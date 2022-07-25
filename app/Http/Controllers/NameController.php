@@ -44,6 +44,7 @@ class NameController extends Controller
         ])->exists();
 
         if(!$isExist) {
+            var_dump($request);
             $name = Name::create($request->all());
             if($name) {
                 $hotel_id = $name->id;
@@ -74,6 +75,18 @@ class NameController extends Controller
     }
 
 
+    public function showDetails(Request $request)
+    {
+        $data = $request->input('query');
+        //$search = $request->value;
+        $name  = Name::join('amenities','amenities.name_id','=','names.id')
+                        ->join('locations','locations.name_id','=','names.id')
+                        ->join('rooms','rooms.name_id','=','names.id')
+                        ->where('names.hotel_name','like','%'.$data.'%')
+                        ->get();
+        return $this->success($name, "Hotels retrieved!", 200);
+
+    }
 
     /**
      * Update the specified resource in storage.

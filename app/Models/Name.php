@@ -10,7 +10,7 @@ class Name extends Model
     use HasFactory;
 
     protected $fillable = [
-        'hotel_name'
+        'hotel_name','hotel_image'
     ];
 
     /**

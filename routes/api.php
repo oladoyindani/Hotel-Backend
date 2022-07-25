@@ -21,9 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('name', '\App\Http\Controllers\NameController');
 
+Route::post('hotels','\App\Http\Controllers\NameController@store');
+
 Route::get('amenities','App\Http\Controllers\AmenityController@showDetails');
 
 Route::get('names','App\Http\Controllers\NameController@showDetails');
+
+Route::get('locations','App\Http\Controllers\LocationController@showDetails');
 
 
 

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
-
 use App\Models\Amenity;
 use App\Models\Name;
 use Illuminate\Http\Request;
@@ -42,13 +40,14 @@ class AmenityController extends Controller
 
     public function showDetails(Request $request)
     {
-        $search = $request->value;
+        $data = $request->input('query');
+        //$search = $request->value;
         $name  = Name::join('amenities','amenities.name_id','=','names.id')
                         ->join('locations','locations.name_id','=','names.id')
                         ->join('rooms','rooms.name_id','=','names.id')
-                        ->where('amenities.features','like','%'.$search.'%')
+                        ->where('amenities.features','like','%'.$data.'%')
                         ->get();
-        return $this->success($name, "Name retrieved!", 200);
+        return $this->success($name, "Hotels retrieved!", 200);
 
     }
 }
