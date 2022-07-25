@@ -43,21 +43,16 @@ class NameController extends Controller
             'hotel_name' => $request->hotel_name,
         ])->exists();
 
-        if(!$isExist) {
-            var_dump($request);
-            $name = Name::create($request->all());
-            if($name) {
-                $hotel_id = $name->id;
-                $request->name_id = $hotel_id;
-                Location::create($request->all() + ['name_id' => $hotel_id]);
-                Room::create($request->all() + ['name_id' => $hotel_id]);
-                Amenity::create($request->all() + ['name_id' => $hotel_id]);
-                return $this->success(null, "name created successfully!", 201);
-            } else {
-                return $this->error("There is an error!", 500);
-            }
+        $name = Name::create($request->all());
+        if($name) {
+            $hotel_id = $name->id;
+            $request->name_id = $hotel_id;
+            Location::create($request->all() + ['name_id' => $hotel_id]);
+            Room::create($request->all() + ['name_id' => $hotel_id]);
+            Amenity::create($request->all() + ['name_id' => $hotel_id]);
+            return $this->success(null, "name created successfully!", 201);
         } else {
-            return $this->error("This name entry exists.", 400);
+            return $this->error("There is an error!", 500);
         }
 
     }

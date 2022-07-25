@@ -27,7 +27,7 @@ Route::get('amenities','App\Http\Controllers\AmenityController@showDetails');
 
 Route::get('names','App\Http\Controllers\NameController@showDetails');
 
-Route::get('locations','App\Http\Controllers\LocationController@showDetails');
+Route::get('prices','App\Http\Controllers\RoomController@showDetails');
 
 
 
