@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('names', function (Blueprint $table) {
             $table->id();
+            $table->string('hotel_name');
+            $table->binary('hotel_image');
             $table->timestamps();
         });
     }

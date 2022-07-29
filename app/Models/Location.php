@@ -9,7 +9,7 @@ class Location extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['country','state','city','postal_address','street_name','name_id'];
+    protected $fillable = ['address','name_id'];
 
     /**
      * The attributes that should be cast to native types.

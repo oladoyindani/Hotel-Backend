@@ -19,9 +19,10 @@ class NameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $name  = Name::all();
+        $data = $request->input('query');
+        $name  = Name::where('names.hotel_name','like','%'.$data.'%')->get();
         return $this->success($name, "Name retrieved!", 200);
 
     }
