@@ -19,4 +19,9 @@ class Location extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function names()
+    {
+        return $this->belongsTo(Name::class, 'name_id', 'id')->first();
+    }
 }

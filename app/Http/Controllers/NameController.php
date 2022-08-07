@@ -71,15 +71,32 @@ class NameController extends Controller
     }
 
 
-    public function showDetails(Request $request)
+    public function showByNames(Request $request)
     {
         $data = $request->input('query');
-        //$search = $request->value;
-        $name  = Name::join('amenities','amenities.name_id','=','names.id')
-                        ->join('locations','locations.name_id','=','names.id')
-                        ->join('rooms','rooms.name_id','=','names.id')
+        $name  = Name::join('rooms','rooms.name_id','=','names.id')
                         ->where('names.hotel_name','like','%'.$data.'%')
                         ->get();
+        return $this->success($name, "Hotels retrieved!", 200);
+
+    }
+
+
+    public function showByLocations(Request $request)
+    {
+        $data = $request->input('query');
+        $name  = Name::join('rooms','rooms.name_id','=','names.id')
+                        ->where('names.location','like','%'.$data.'%')
+                        ->get()->first();
+        return $this->success($name, "Hotels retrieved!", 200);
+
+    }
+
+    public function showByAmenities(Request $request)
+    {
+        $data = $request->input('query');
+        $name  = Name::where('names.amenities','like','%'.$data.'%')
+                    ->get();
         return $this->success($name, "Hotels retrieved!", 200);
 
     }

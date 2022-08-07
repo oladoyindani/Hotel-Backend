@@ -10,7 +10,7 @@ class Name extends Model
     use HasFactory;
 
     protected $fillable = [
-        'hotel_name','hotel_image'
+        'hotel_name','hotel_image','location','amenities'
     ];
 
     /**
@@ -21,4 +21,20 @@ class Name extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class, 'name_id', 'id');
+    }
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'name_id', 'id');
+    }
+
+    public function amenities()
+    {
+        return $this->hasMany(Amenity::class, 'name_id', 'id');
+    }
 }

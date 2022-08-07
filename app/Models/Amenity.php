@@ -10,4 +10,9 @@ class Amenity extends Model
     use HasFactory;
 
     protected $fillable = ['features','image_desc','name_id'];
+
+    public function names()
+    {
+        return $this->belongsTo(Name::class, 'name_id', 'id')->first();
+    }
 }

@@ -23,12 +23,14 @@ Route::apiResource('name', '\App\Http\Controllers\NameController');
 
 Route::post('hotels','\App\Http\Controllers\NameController@store');
 
-Route::get('amenities','App\Http\Controllers\AmenityController@showDetails');
+Route::get('amenities','App\Http\Controllers\NameController@showByAmenities');
 
-Route::get('names','App\Http\Controllers\NameController@showDetails');
+Route::get('names','App\Http\Controllers\NameController@showByNames');
 
-Route::get('prices','App\Http\Controllers\RoomController@showDetails');
+Route::get('prices','App\Http\Controllers\RoomController@showByPrices');
 
+Route::get('bed_sizes','App\Http\Controllers\RoomController@showByBed');
 
+Route::get('names','App\Http\Controllers\NameController@showByLocations');
 
 
